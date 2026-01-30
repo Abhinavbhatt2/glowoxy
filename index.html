@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow Oxygluta | Premium Derma PCD Pharma Franchise</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-blue: #0e4f88;
+            --secondary-purple: #6a1b9a; /* Requested Secondary Color */
+            --accent-red: #e32d2d;
+            --light-bg: #fdfdfd;
+            --text-main: #333;
+            --text-muted: #666;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        
+        body { 
+            background-color: #fff; 
+            background-image: radial-gradient(#e5e5e5 0.8px, transparent 0.8px); 
+            background-size: 24px 24px; /* Professional dotted background */
+            color: var(--text-main);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* --- STICKY NAVIGATION --- */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 10px 8%; background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            position: fixed; width: 100%; top: 0; z-index: 1000;
+        }
+        .logo img { height: 55px; }
+        .nav-links { display: flex; list-style: none; }
+        .nav-links li { margin-left: 25px; }
+        .nav-links a { text-decoration: none; color: var(--text-main); font-weight: 500; font-size: 14px; transition: 0.3s; }
+        .nav-links a:hover { color: var(--secondary-purple); }
+
+        /* --- FLOATING ELEMENTS --- */
+        /* Left Socials */
+        .float-left { position: fixed; left: 15px; bottom: 20%; z-index: 1000; display: flex; flex-direction: column; gap: 12px; }
+        .btn-float { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 22px; text-decoration: none; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: 0.3s; }
+        .float-wa { background: #25D366; }
+        .float-mail { background: #007bff; }
+        .float-call { background: var(--accent-red); }
+        .btn-float:hover { transform: scale(1.1); }
+
+        /* Right Tabs */
+        .side-tabs { position: fixed; right: 0; top: 35%; z-index: 1000; display: flex; flex-direction: column; gap: 2px; }
+        .s-tab { writing-mode: vertical-rl; text-orientation: mixed; padding: 25px 12px; color: white; text-decoration: none; font-weight: 600; font-size: 14px; border-radius: 8px 0 0 8px; transition: 0.3s; cursor: pointer; text-align: center; }
+        .tab-enquiry { background: var(--accent-red); }
+        .tab-catalog { background: var(--secondary-purple); margin-top: 10px; }
+        .s-tab:hover { padding-right: 25px; }
+
+        /* --- HERO SECTION --- */
+        .hero { 
+            margin-top: 75px; height: 70vh; 
+            background: linear-gradient(rgba(14, 79, 136, 0.8), rgba(106, 27, 154, 0.8)), url('https://glowoxygluta.com/wp-content/uploads/2024/10/Glow-Oxyglutas-Client-Network-in-all-over-india-100-1-1536x873.jpg');
+            background-size: cover; background-position: center;
+            display: flex; align-items: center; justify-content: center; color: white; text-align: center; padding: 0 20px;
+        }
+        .hero-content h1 { font-size: 3.5rem; margin-bottom: 15px; }
+        .hero-content p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 25px; opacity: 0.9; }
+
+        /* --- STATS SECTION --- */
+        .stats-bar { display: flex; justify-content: space-around; background: white; padding: 40px 8%; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-top: -50px; border-radius: 10px; width: 84%; margin-left: 8%; position: relative; z-index: 10; }
+        .stat-item h3 { color: var(--secondary-purple); font-size: 2rem; }
+        .stat-item p { color: var(--text-muted); font-weight: 500; }
+
+        /* --- PRODUCT SECTION (THE CORE) --- */
+        .product-section { padding: 100px 8% 60px; text-align: center; }
+        .section-hdr { margin-bottom: 40px; }
+        .section-hdr h2 { font-size: 2.5rem; color: var(--primary-blue); position: relative; display: inline-block; }
+        .section-hdr h2::after { content: ''; width: 60px; height: 3px; background: var(--secondary-purple); position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); }
+
+        .tab-box { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 50px; }
+        .t-btn { padding: 12px 28px; border: none; border-radius: 30px; background: #f0f0f0; cursor: pointer; font-weight: 600; transition: 0.3s; color: #555; }
+        .t-btn.active { background: #e3431d; color: white; box-shadow: 0 6px 20px rgba(227, 67, 29, 0.3); }
+
+        .prod-grid { display: none; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; animation: fadeInUp 0.6s ease; }
+        .prod-grid.active { display: grid; }
+        
+        .p-card { background: white; border: 1px solid #eee; border-radius: 12px; overflow: hidden; transition: 0.4s; padding: 15px; text-align: left; }
+        .p-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); border-color: var(--secondary-purple); }
+        .p-img-wrapper { height: 220px; width: 100%; background: #f9f9f9; display: flex; align-items: center; justify-content: center; border-radius: 8px; margin-bottom: 15px; }
+        .p-img-wrapper img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .p-card h4 { font-size: 1.1rem; margin-bottom: 8px; color: var(--primary-blue); }
+        .p-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.4; }
+
+        /* --- ABOUT & MONOPOLY --- */
+        .info-segment { padding: 80px 8%; display: flex; align-items: center; gap: 50px; background: #fff; }
+        .info-segment:nth-child(even) { flex-direction: row-reverse; background: var(--light-bg); }
+        .info-text { flex: 1; }
+        .info-img { flex: 1; }
+        .info-img img { width: 100%; border-radius: 20px; box-shadow: 20px 20px 0px var(--secondary-purple); }
+        .info-text h2 { color: var(--primary-blue); font-size: 2.2rem; margin-bottom: 20px; }
+        .info-text p { margin-bottom: 20px; line-height: 1.8; color: var(--text-muted); }
+
+        /* --- CONTACT SECTION --- */
+        .contact-sec { padding: 80px 8%; background: var(--primary-blue); color: white; }
+        .contact-container { display: grid; grid-template-columns: 1fr 1.5fr; gap: 50px; }
+        .c-form input, .c-form textarea { width: 100%; padding: 15px; margin-bottom: 15px; border: none; border-radius: 5px; outline: none; }
+        .c-btn { background: var(--secondary-purple); color: white; border: none; padding: 15px 40px; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%; }
+
+        footer { background: #111; color: white; text-align: center; padding: 30px; font-size: 14px; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 992px) {
+            .nav-links, .stats-bar { display: none; }
+            .info-segment { flex-direction: column !important; text-align: center; }
+            .contact-container { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Nav -->
+    <nav>
+        <div class="logo"><img src="https://glowoxygluta.com/wp-content/uploads/2023/04/logo-1.png" alt="Glow Oxygluta"></div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#products">Our Products</a></li>
+            <li><a href="#monopoly">PCD Franchise</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Floating Socials -->
+    <div class="float-left">
+        <a href="https://wa.me/91" class="btn-float float-wa"><i class="fab fa-whatsapp"></i></a>
+        <a href="mailto:info@glowoxygluta.com" class="btn-float float-mail"><i class="fas fa-envelope"></i></a>
+        <a href="tel:+91" class="btn-float float-call"><i class="fas fa-phone-alt"></i></a>
+    </div>
+
+    <!-- Fixed Tabs -->
+    <div class="side-tabs">
+        <div class="s-tab tab-enquiry" onclick="document.getElementById('contact').scrollIntoView()">Enquiry Form</div>
+        <a href="#" class="s-tab tab-catalog">Download Catalogue</a>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Glow Oxygluta Derma Care</h1>
+            <p>Empowering Skincare Professionals with High-Quality Derma and Cosmetic Solutions. Join India's fastest-growing PCD Pharma network.</p>
+            <a href="#products" class="t-btn active" style="text-decoration: none;">View Product Range</a>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats-bar">
+        <div class="stat-item"><h3>70+</h3><p>Products</p></div>
+        <div class="stat-item"><h3>2000+</h3><p>Happy Partners</p></div>
+        <div class="stat-item"><h3>WHO-GMP</h3><p>Certified Quality</p></div>
+        <div class="stat-item"><h3>24/7</h3><p>Support</p></div>
+    </section>
+
+    <!-- About Segment -->
+    <section class="info-segment" id="about">
+        <div class="info-text">
+            <h2>Pioneers in Dermatology</h2>
+            <p>Glow Oxygluta is dedicated to providing high-efficacy dermatological products that meet global standards. We specialize in aesthetic, clinical, and herbal skincare solutions.</p>
+            <p>Our research-driven approach ensures that every tablet, cream, and serum we produce delivers visible results, making us a preferred choice for dermatologists nationwide.</p>
+        </div>
+        <div class="info-img">
+            <img src="https://images.unsplash.com/photo-1579152276507-03a08b39479f?auto=format&fit=crop&w=800&q=80" alt="Lab Research">
+        </div>
+    </section>
+
+    <!-- OUR PRODUCTS SECTION (Tabbed) -->
+    <section class="product-section" id="products">
+        <div class="section-hdr">
+            <h2>Our Products</h2>
+            <p style="margin-top:15px; color: #666;">Explore our wide range of pharmaceutical and cosmetic formulations</p>
+        </div>
+
+        <div class="tab-box">
+            <button class="t-btn active" onclick="openTab('ageing', this)">Ageing</button>
+            <button class="t-btn" onclick="openTab('radiance', this)">Radiance</button>
+            <button class="t-btn" onclick="openTab('hair', this)">Haircare</button>
+            <button class="t-btn" onclick="openTab('sun', this)">Sun Protection</button>
+            <button class="t-btn" onclick="openTab('moist', this)">Moisturization</button>
+            <button class="t-btn" onclick="openTab('supp', this)">Supplements</button>
+        </div>
+
+        <!-- Ageing Grid -->
+        <div id="ageing" class="prod-grid active">
+            <div class="p-card">
+                <div class="p-img-wrapper"><img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=400&q=80" alt="Ageing"></div>
+                <h4>Retinol Glow Serum</h4>
+                <p>Advanced anti-ageing formula with 2% pure retinol for skin renewal.</p>
+            </div>
+            <div class="p-card">
+                <div class="p-img-wrapper"><img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=400&q=80" alt="Ageing"></div>
+                <h4>CQ 10 Plus Tablets</h4>
+                <p>Co-enzyme Q10 supplements for mitochondrial health and skin elasticity.</p>
+            </div>
+            <div class="p-card">
+                <div class="p-img-wrapper"><img src="https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?auto=format&fit=crop&w=400&q=80" alt="Ageing"></div>
+                <h4>Collagen Booster</h4>
+                <p>Hydrolyzed marine collagen for firming and lifting facial contours.</p>
+            </div>
+        </div>
+
+        <!-- Radiance Grid -->
+        <div id="radiance" class="prod-grid">
+            <div class="p-card">
+                <div class="p-img-wrapper"><img src="https://images.unsplash.com/photo-1598440494896-20259922c432?auto=format&fit=crop&w=400&q=80" alt="Radiance"></div>
+                <h4>Gluta-White Cream</h4>
+                <p>L-Glutathione enriched cream for intense skin brightening and glow.</p>
+            </div>
+            <div class="p-card">
+                <div class="p-img-wrapper"><img src="https://images.unsplash.com/photo-1617897903246-7392bc717367?auto=format&fit=crop&w=400&q=80" alt="Radiance"></div>
+                <h4>Vitamin C 20%</h4>
+                <p>Pure Vitamin C serum with Ferulic acid for high radiance.</p>
+            </div>
+        </div>
+
+        <!-- Haircare Grid -->
+        <div id="hair" class="prod-grid">
+            <div class="p-card">
+                <div class="p-img-wrapper"><img src="https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&w=400&q=80" alt="Hair"></div>
+                <h4>Keratin Hair Mask</h4>
+                <p>Deep conditioning treatment for damaged and frizzy hair.</p>
+            </div>
+            <div class="p-card">
+                <div class="p-img-wrapper"><img src="https://images.unsplash.com/photo-1527799822341-478a701fa555?auto=format&fit=crop&w=400&q=80" alt="Hair"></div>
+                <h4>Biotin Revive Shampoo</h4>
+                <p>Sulphate-free shampoo to prevent hair fall and promote thickness.</p>
+            </div>
+        </div>
+
+        <!-- Sun Protection Grid -->
+        <div id="sun" class="prod-grid">
+            <div class="p-card">
+                <div class="p-img-wrapper"><img src="https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&w=400&q=80" alt="Sun"></div>
+                <h4>Matte Gel SPF 50</h4>
+                <p>Non-greasy, broad-spectrum UVA/UVB protection for all skin types.</p>
+            </div>
+        </div>
+
+        <!-- Moisturizer Grid -->
+        <div id="moist" class="prod-grid">
+            <div class="p-card">
+                <div class="p-img-wrapper"><img src="https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?auto=format&fit=crop&w=400&q=80" alt="Moist"></div>
+                <h4>Hyaluronic Hydro Gel</h4>
+                <p>72-hour intense hydration with multi-molecular hyaluronic acid.</p>
+            </div>
+        </div>
+
+        <!-- Supplements Grid -->
+        <div id="supp" class="prod-grid">
+            <div class="p-card">
+                <div class="p-img-wrapper"><img src="https://images.unsplash.com/photo-1584017947486-53d7d72b5037?auto=format&fit=crop&w=400&q=80" alt="Supp"></div>
+                <h4>Multi-Vitamin Softgels</h4>
+                <p>Essential skin-specific vitamins for internal radiance.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Monopoly Rights Segment -->
+    <section class="info-segment" id="monopoly">
+        <div class="info-img">
+            <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=800&q=80" alt="Franchise Meeting">
+        </div>
+        <div class="info-text">
+            <h2>PCD Pharma Franchise Opportunities</h2>
+            <p>We offer lucrative Monopoly Rights for our PCD partners across India. This ensures that you have no competition in your designated territory, allowing for maximum growth.</p>
+            <ul style="list-style: none; margin-bottom: 20px;">
+                <li><i class="fas fa-check-circle" style="color:var(--secondary-purple)"></i> Exclusive Marketing Rights</li>
+                <li><i class="fas fa-check-circle" style="color:var(--secondary-purple)"></i> Visual Aids & MR Bags Provided</li>
+                <li><i class="fas fa-check-circle" style="color:var(--secondary-purple)"></i> Regular Incentive Schemes</li>
+            </ul>
+            <a href="#contact" class="t-btn active" style="text-decoration: none;">Apply Now</a>
+        </div>
+    </section>
+
+    <!-- Contact Segment -->
+    <section class="contact-sec" id="contact">
+        <div class="contact-container">
+            <div>
+                <h2>Get in Touch</h2>
+                <p style="margin: 20px 0;">Have queries regarding franchise or products? Our experts are here to help.</p>
+                <p><i class="fas fa-map-marker-alt"></i> SCO-123, Derma Tower, Chandigarh, India</p>
+                <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                <p><i class="fas fa-envelope"></i> info@glowoxygluta.com</p>
+            </div>
+            <div class="c-form">
+                <input type="text" placeholder="Your Name">
+                <input type="email" placeholder="Email Address">
+                <input type="text" placeholder="Phone Number">
+                <textarea rows="4" placeholder="Your Message"></textarea>
+                <button class="c-btn">Send Enquiry</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Glow Oxygluta. All Rights Reserved. | Premium Derma PCD Franchise</p>
+    </footer>
+
+    <script>
+        function openTab(tabId, btn) {
+            // Remove active from buttons
+            const buttons = document.querySelectorAll('.t-btn');
+            buttons.forEach(b => b.classList.remove('active'));
+            
+            // Add active to clicked button
+            btn.classList.add('active');
+
+            // Hide all grids
+            const grids = document.querySelectorAll('.prod-grid');
+            grids.forEach(g => g.classList.remove('active'));
+
+            // Show selected grid
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        // Simple scroll reveal for navigation background
+        window.onscroll = function() {
+            const nav = document.querySelector('nav');
+            if (window.pageYOffset > 50) {
+                nav.style.padding = "5px 8%";
+                nav.style.background = "rgba(255, 255, 255, 0.98)";
+            } else {
+                nav.style.padding = "10px 8%";
+                nav.style.background = "white";
+            }
+        };
+    </script>
+</body>
+</html>
